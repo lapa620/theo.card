@@ -85,18 +85,18 @@
 
     /* Transição suave do conteúdo */
     .content {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.6s ease;
-  margin-top: 0;
-}
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.6s ease;
+      margin-top: 0;
+    }
 
-.content.active {
-  max-height: 2000px; /* aumenta o limite pra garantir espaço */
-  opacity: 1;
-  margin-top: 15px;
-}
+    .content.active {
+      max-height: 2000px; /* aumenta o limite pra garantir espaço */
+      opacity: 1;
+      margin-top: 15px;
+    }
 
     footer {
       text-align: center;
@@ -132,14 +132,14 @@
       border-radius: 6%;
       margin-top: -5%;
     }
-.d {
-  width: 180px;
-  height: 180px;
-  display: block;
-  margin: 12px auto 0 auto;
-  object-fit: cover;
-  border-radius: 6%;
-}
+    .d {
+      width: 180px;
+      height: 180px;
+      display: block;
+      margin: 12px auto 0 auto;
+      object-fit: cover;
+      border-radius: 6%;
+    }
 
     .dg img {
       border-radius: 5%;
@@ -158,10 +158,10 @@
       .gato {
         position: static;
         display: block;
-        margin: 0 auto 15px auto;
-        height: auto;
-        width: 100%;
-        max-width: 250px;
+        margin: 0 auto 25px auto; /* mais espaço abaixo */
+        width: 80vw;         /* ocupa 80% da largura da tela */
+        max-width: 350px;    /* limite máximo, ficou maior */
+        height: auto;        /* mantém proporção */
       }
 
       .buttons {
@@ -213,7 +213,7 @@
       </div>
 
       <!-- Conteúdos escondidos -->
-            <div id="artes" class="content">
+      <div id="artes" class="content">
         <p>Aqui estão alguns exemplos de artes minhas! 🎨</p>
          <div class="dg">
           <img src="Novo Projeto.png" class="d" alt="dragao">
@@ -224,11 +224,8 @@
           <img src="dog.jpg" alt="cachorro">
           <img src="Robo.jpg" alt="robo">
           <img src="Oc.jpg" alt="oc">
-         
         </div>
-        
       </div>
-
 
       <div id="contato" class="content">
         <p>Entre em contato pelo discord: <b>@._.theo__57369</b></p>
@@ -283,6 +280,3 @@
   </script>
 </body>
 </html>
-
-
-
