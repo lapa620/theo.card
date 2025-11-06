@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Theo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('chat-img.png') center center fixed no-repeat;
+      background-size: cover;
+      background-color: #467bc3; /* fallback */
+    }
+
+    .card {
+      width: 400px;
+      background-color: rgba(123, 188, 220, 0.9);
+      border-radius: 60px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      margin: auto;
+      margin-top: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 20px 20px 240px;
+      border: 4px solid #e3dc3d;
+      overflow: hidden;
+      min-height: 300px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.6s ease; /* suaviza expansão */
+    }
+
+    h1 {
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 260px;
+      justify-content: center;
+      position: relative;
+      z-index: 3; /* acima do gato */
+    }
+
+    button {
+      background: #ffd84d;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.4s;
+      font-size: large;
+      color: white;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .buttons button:nth-child(1):hover {
+      background: linear-gradient(135deg, #fde047, #facc15);
+      transform: rotate(-3deg) scale(1.05);
+    }
+    .buttons button:nth-child(2):hover {
+      background: linear-gradient(135deg, #60a5fa, #2563eb);
+      transform: rotate(3deg) scale(1.05);
+    }
+    .buttons button:nth-child(3):hover {
+      background: linear-gradient(135deg, #f472b6, #db2777);
+      transform: translateY(-4px) scale(1.05);
+    }
+    .buttons button:nth-child(4):hover {
+      background: linear-gradient(135deg, #34d399, #059669);
+      transform: translateY(4px) scale(1.05);
+    }
+
+    /* Transição suave do conteúdo */
+    .content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.6s ease;
+  margin-top: 0;
+}
+
+.content.active {
+  max-height: 2000px; /* aumenta o limite pra garantir espaço */
+  opacity: 1;
+  margin-top: 15px;
+}
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      color: rgb(255, 255, 255);
+      position: relative;
+      z-index: 1;
+    }
+
+    .gato {
+      height: 700px;
+      width: 700px;
+      position: absolute;
+      top: -300px;
+      left: -90px;
+      z-index: 2; /* entre card e botões */
+      pointer-events: none;
+    }
+
+    .artes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      width: fit-content;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .artes img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6%;
+      margin-top: -5%;
+    }
+.d {
+  width: 180px;
+  height: 180px;
+  display: block;
+  margin: 12px auto 0 auto;
+  object-fit: cover;
+  border-radius: 6%;
+}
+
+    .dg img {
+      border-radius: 5%;
+      width: 250px;
+      height: auto;
+    }
+
+    /* 🔹 Ajustes para celular */
+    @media (max-width: 768px) {
+      .card {
+        width: 90%;
+        margin-top: 20px;
+        padding: 20px;
+      }
+
+      .gato {
+        position: static;
+        display: block;
+        margin: 0 auto 15px auto;
+        height: auto;
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .buttons {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        max-width: 100%;
+      }
+
+      .buttons button {
+        width: 100%;
+        font-size: 18px;
+      }
+
+      /* remove efeitos de hover no mobile */
+      .buttons button:hover {
+        transform: none !important;
+      }
+
+      .artes {
+        grid-template-columns: 1fr;
+        justify-content: center;
+      }
+
+      .artes img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      .d {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="card" id="card">
+      <h1>Bem vindo!! me chamo Theo e vc? estou fazendo comissões de artes, vc quer conhecer mais do meu trabalho só seguir as informações abaixo:</h1>
+      <img src="gato.png" class="gato" alt="Imagem de um gato" onerror="this.src='fallback.png'">
+      <div class="buttons">
+        <button onclick="showContent('artes')" aria-label="Ver informações sobre artes">Artes</button>
+        <button onclick="showContent('contato')" aria-label="Ver informações de contato">Contato</button>
+        <button onclick="showContent('termos')" aria-label="Ver termos de uso">Termos</button>
+        <button onclick="showContent('precos')" aria-label="Ver preços das artes">Preços</button>
+      </div>
+
+      <!-- Conteúdos escondidos -->
+            <div id="artes" class="content">
+        <p>Aqui estão alguns exemplos de artes minhas! 🎨</p>
+         <div class="dg">
+          <img src="Novo Projeto.png" class="d" alt="dragao">
+        </div>
+        <div class="artes">
+          <img src="Balao.jpg" alt="balao">
+           <img src="Shadow.jpg" alt="shadowwww">
+          <img src="Dog.jpg" alt="cachorro">
+          <img src="Robo.jpg" alt="robo">
+          <img src="Oc.jpg" alt="oc">
+         
+        </div>
+        
+      </div>
+
+
+      <div id="contato" class="content">
+        <p>Entre em contato pelo discord: <b>@._.theo__57369</b></p>
+      </div>
+
+      <div id="termos" class="content">
+        <p>Termos de contrato:</p>
+        <ul>
+        <li>Primeiro: Se for usar os desenhos de personagens, postar ou algo semelhante por favor coloque os créditos.</li><br>
+        <li>Segundo: Não desenho artes que promova ódio e discriminação, realismo e sexualização excessiva (NSFW).</li><br>
+        <li>Terceiro: 50% do pagamento após aprovação do rascunho e 50% após a finalização (não faço reembolso).</li><br>
+        <li>Quarto: O prazo pode variar de desenho e de temporada, pode ter um valor a mais se for muito complexo mas sempre mantendo o informado sobre o desenho e as expectativas.</li>
+        </ul>
+      </div>
+
+      <div id="precos" class="content">
+        <p>Artes a partir de <b>R$2</b>🖌️(valores discutíveis) </p>
+        <ul>
+          <li>Desenho simples e sem cor: R$4</li>
+          <li>Desenho do torso pra cima: R$8</li>
+          <li>Desenho completo: R$12</li>
+          <li>Emoji/chibi: R$2</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    portifolio editado e criado por Murilo.
+    Meios de contato:<br> @vlm5(discord)
+  </footer>
+
+  <script>
+    let currentOpen = null;
+
+    function showContent(id) {
+      const sections = document.querySelectorAll('.content');
+      const active = document.getElementById(id);
+
+      if (!active) return;
+
+      // Fecha todas as seções
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      if (currentOpen === id) {
+        currentOpen = null;
+      } else {
+        active.classList.add('active');
+        currentOpen = id;
+      }
+    }
+  </script>
+</body>
+</html>
