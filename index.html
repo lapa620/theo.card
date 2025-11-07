@@ -64,7 +64,7 @@
       color: white;
       width: 100%;
       overflow: hidden;
-      margin-top:-20%;
+      
     }
 
     .buttons button:nth-child(1):hover {
@@ -107,15 +107,20 @@
       z-index: 1;
     }
 
+    
+      /* Gato bem mais lateral da direita do card */
     .gato {
-   display: block;
-  max-width: 180px;
-  width: 100%;
-  height: auto;
-  margin: auto 16px auto;
-  margin-left: -95%;
-  z-index: 2;
-  pointer-events: none;
+      display: block;
+      max-width: 140px;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      position: relative;
+      right: -30px; /* move mais pra lateral, fora do card */
+      z-index: 2;
+      pointer-events: none;
+      align-self: flex-start;
+    
     }
 
     .artes {
@@ -206,13 +211,14 @@
   <main>
     <div class="card" id="card">
       <h1>Bem vindo!! me chamo Theo e vc? estou fazendo comissões de artes, vc quer conhecer mais do meu trabalho só seguir as informações abaixo:</h1>
-      <img src="gato.png" class="gato" alt="Imagem de um gato" onerror="this.src='fallback.png'">
+      
       <div class="buttons">
         <button onclick="showContent('artes')" aria-label="Ver informações sobre artes">Artes</button>
         <button onclick="showContent('contato')" aria-label="Ver informações de contato">Contato</button>
         <button onclick="showContent('termos')" aria-label="Ver termos de uso">Termos</button>
         <button onclick="showContent('precos')" aria-label="Ver preços das artes">Preços</button>
       </div>
+       <img src="gato.png" class="gato" alt="Imagem de um gato" onerror="this.src='fallback.png'">
 
       <!-- Conteúdos escondidos -->
       <div id="artes" class="content">
@@ -282,6 +288,7 @@
   </script>
 </body>
 </html>
+
 
 
 
